@@ -1,15 +1,13 @@
 <?php
 session_start();
 
-// Verifica se l'utente è loggato
+
 if (isset($_SESSION["_agora_username"])) {
     $username = $_SESSION["_agora_username"];
     $user_id = $_SESSION["_agora_user_id"];
-    // Utente autenticato, procedi con il caricamento della pagina
+   
 } else {
-    // Utente non autenticato, gestisci il comportamento desiderato
-    // Qui puoi inserire il codice per il comportamento dell'utente non autenticato
-    // Per esempio, mostrare una sezione diversa o un messaggio di benvenuto generico
+  
     $username = "Ospite";
     $user_id = "N/D";
 }

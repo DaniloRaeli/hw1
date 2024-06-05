@@ -7,8 +7,8 @@ body{
     font-family:Inter;
     letter-spacing: .32px;
     z-index:1;
-    max-height: 100%; /* Imposta l'altezza massima del corpo al 100% dell'altezza della viewport */
-    overflow-y: auto; /* Abilita lo scroll verticale quando il contenuto supera l'altezza massima */
+    max-height: 100%; 
+    overflow-y: auto; 
     max-width: 100%;
 }
 
@@ -60,7 +60,7 @@ nav a{
     color:black;
     padding:20px;
     margin-left: 5px;
-    text-decoration: none; /* Rimuove il sottolineato predefinito */
+    text-decoration: none; 
     width: 10%;
     
 }
@@ -71,13 +71,13 @@ nav a{
 }
 
 #auth-links a {
-    margin-left: 10px; /* Imposta la distanza desiderata tra i link */
-    color: #FF0000; /* Colore del testo, ad esempio rosso */
+    margin-left: 10px; 
+    color: #FF0000; 
     text-decoration: none;
 }
 
 #auth-links a:first-child {
-    margin-left: 0; /* Rimuove il margine sinistro dal primo link (Login) */
+    margin-left: 0; 
 }
 
  #login{
@@ -194,30 +194,29 @@ nav a{
     justify-content: flex-start;
     align-items: flex-start;
     padding: 20px;
-    background-color: #f5f5f5; /* Colore di sfondo del box gigante */
+    background-color: #f5f5f5; 
 }
 
-/* Impostazioni specifiche per il mini box */
 .mini_box1 {
-    background-color: #f5f5f5; /* Colore di sfondo del mini box */
+    background-color: #f5f5f5; 
     padding: 20px;
    
    
-    max-width: 700px; /* Imposta la larghezza massima del box */
+    max-width: 700px; 
 }
 
-/* Impostazioni per il titolo */
+
 .mini_box1 h1 {
-    margin: 0 0 10px 20px; /* Margine per spostare il titolo a destra */
+    margin: 0 0 10px 20px; 
     font-size: 30px;
-    color: #333; /* Colore del testo del titolo */
+    color: #333; 
 }
 
-/* Impostazioni per il testo */
+
 .mini_box1 p {
     font-size: 16px;
-    color: #666; /* Colore del testo del paragrafo */
-    margin: 0 0 20px 20px; /* Margine per spostare il testo a destra */
+    color: #666; 
+    margin: 0 0 20px 20px; 
 }
 
 /* Impostazioni per il bottone */

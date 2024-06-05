@@ -59,30 +59,30 @@
         <br><br> <br><br> <br><br>
         <div class="product-grid">
         <?php
-// Include il codice per la connessione al database
+
 include 'auth.php';
 
-// Connessione al database
+
 $conn = new mysqli($dbconfig['host'], $dbconfig['user'], $dbconfig['password'], $dbconfig['name']);
 
-// Verifica connessione
+
 if ($conn->connect_error) {
     die("Connessione fallita: " . $conn->connect_error);
 }
 
-// Gestione dell'aggiunta al carrello
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['nome_prodotto'])) {
     $nome_prodotto = $_POST['nome_prodotto'];
     $prezzo = $_POST['prezzo'];
 
-    // Query per inserire il prodotto nel carrello
+   
     $sql = "INSERT INTO carrello (nome_prodotto, prezzo) VALUES (?, ?)";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("sd", $nome_prodotto, $prezzo);
 
-    // Esegui la query
+   
     if ($stmt->execute()) {
-        // Prodotto aggiunto con successo
+        
         echo json_encode(['success' => true]);
     } else {
         echo json_encode(['success' => false, 'error' => $stmt->error]);
@@ -92,18 +92,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['nome_prodotto'])) {
     exit;
 }
 
-// Query per ottenere i prodotti
+
 $sql = "SELECT nome_prodotto, immagine_prodotto, prezzo FROM prodotti";
 $result = $conn->query($sql);
 
-// Verifica risultati della query
+
 if ($result === false) {
     echo "Errore nella query: " . $conn->error;
 } else {
     if ($result->num_rows > 0) {
-        // Ripeti finché ci sono righe nel risultato della query
+      
         while($row = $result->fetch_assoc()) {
-            // Stampare il prodotto e il form
+           
             echo "<div class='product'>";
             echo "<h2>" . $row["nome_prodotto"] . "</h2>";
             echo "<img src='" . $row["immagine_prodotto"] . "' alt='" . $row["nome_prodotto"] . "'>";

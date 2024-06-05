@@ -1,49 +1,46 @@
 <?php
-// Include il codice per la connessione al database
+
 include 'auth.php';
 
-// Connessione al database
 $conn = new mysqli($dbconfig['host'], $dbconfig['user'], $dbconfig['password'], $dbconfig['name']);
 
-// Verifica connessione
+
 if ($conn->connect_error) {
     die("Connessione fallita: " . $conn->connect_error);
 }
 
-// Verifica se l'utente è loggato
 session_start();
 $user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
 
-$order_success = false; // Variabile per tenere traccia dello stato dell'ordine
+$order_success = false; 
 
-// Gestione delle richieste di rimozione dal carrello
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['rimuovi'])) {
     $id = $_POST['id'];
-    // Prepara la query per la rimozione del prodotto senza bind
+  
     $sql = "DELETE FROM carrello WHERE id = $id";
-    // Esegui la query
+   
     if ($conn->query($sql) === TRUE) {
     } else {
         echo "<p>Errore durante la rimozione del prodotto: " . $conn->error . "</p>";
     }
 }
 
-// Gestione dell'invio dell'ordine
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['invia_ordine'])) {
-    // Calcola il costo totale del carrello
+   
     $sql = "SELECT SUM(prezzo) as totale FROM carrello";
     $result = $conn->query($sql);
     $row = $result->fetch_assoc();
     $totale = $row['totale'];
 
     if ($totale > 0) {
-        // Inserisci l'ordine nella tabella ordini
+    
         $sql = "INSERT INTO ordini (costo, id_users) VALUES ($totale, " . ($user_id ? $user_id : "NULL") . ")";
         if ($conn->query($sql) === TRUE) {
-            // Pulisci il carrello
+          
             $sql = "DELETE FROM carrello";
             $conn->query($sql);
-            $order_success = true; // Imposta lo stato dell'ordine come successo
+            $order_success = true; 
         } else {
             echo "Errore durante l'invio dell'ordine: " . $conn->error;
         }
@@ -52,21 +49,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['invia_ordine'])) {
     }
 }
 
-// Query per selezionare tutti i prodotti dal carrello
+
 $sql = "SELECT * FROM carrello";
 $result = $conn->query($sql);
 
-// Calcola la somma totale dei prezzi
+
 $total = 0;
 if ($result->num_rows > 0) {
     while($row = $result->fetch_assoc()) {
         $total += $row['prezzo'];
     }
-    // Riposiziona il puntatore del risultato al primo elemento
+  
     $result->data_seek(0);
 }
 
-// Chiudi la connessione
+
 $conn->close();
 ?>
 <!DOCTYPE html>

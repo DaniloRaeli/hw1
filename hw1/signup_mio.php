@@ -1,13 +1,11 @@
 <?php
 require_once 'auth.php';
 
-// Inizializza l'array degli errori
+
 $errors = [];
 
-// Se il modulo è stato inviato
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Validazione dei campi
-    $name = trim($_POST["name"]);
+  
     $surname = trim($_POST["surname"]);
     $username = trim($_POST["username"]);
     $email = trim($_POST["email"]);
@@ -15,17 +13,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $confirmPassword = $_POST["confirm_password"];
     $allow = isset($_POST["allow"]) && $_POST["allow"];
 
-    // Validazione del nome
+  
     if (empty($name)) {
         $errors[] = "Inserisci il tuo nome.";
     }
 
-    // Validazione del cognome
     if (empty($surname)) {
         $errors[] = "Inserisci il tuo cognome.";
     }
 
-    // Validazione del nome utente
     if (empty($username)) {
         $errors[] = "Inserisci il nome utente.";
     } elseif (!preg_match('/^[a-zA-Z0-9_]{1,15}$/', $username)) {
@@ -34,32 +30,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $errors[] = "Il nome utente è già utilizzato.";
     }
 
-    // Validazione dell'email
+  
     if (empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $errors[] = "Inserisci un'email valida.";
     } elseif (checkEmailExists($email)) {
         $errors[] = "L'email è già utilizzata.";
     }
 
-    // Validazione della password
+ 
     if (strlen($password) < 8) {
         $errors[] = "La password deve contenere almeno 8 caratteri.";
     } elseif ($password !== $confirmPassword) {
         $errors[] = "Le password non corrispondono.";
     }
 
-    // Accetta i termini e le condizioni
+ 
     if (!$allow) {
         $errors[] = "Devi accettare i termini e le condizioni.";
     }
 
-    // Se non ci sono errori, registra l'utente
+   
     if (empty($errors)) {
-        // Crittografa la password
+       
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
         
         if (registerUser($username, $hashedPassword, $name, $surname, $email)) {
-            // Reindirizza l'utente dopo la registrazione
+           
             header("Location: login_mio.php");
             exit;
         } else {
@@ -69,11 +65,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 function checkUsernameExists($username) {
-    // Implementazione della verifica dell'esistenza del nome utente nel database
+   
 }
 
 function checkEmailExists($email) {
-    // Implementazione della verifica dell'esistenza dell'email nel database
+   
 }
 
 function registerUser($username, $password, $name, $surname, $email) {
@@ -84,7 +80,7 @@ function registerUser($username, $password, $name, $surname, $email) {
     $surname = mysqli_real_escape_string($conn, $surname);
     $email = mysqli_real_escape_string($conn, $email);
     $password = mysqli_real_escape_string($conn, $password);
-    // Query di inserimento con password hashata
+  
     $query = "INSERT INTO users(username, password, name, surname, email) VALUES('$username', '$password', '$name', '$surname', '$email')";
     $result = mysqli_query($conn, $query);
     mysqli_close($conn);
@@ -113,8 +109,7 @@ function registerUser($username, $password, $name, $surname, $email) {
                 <div class="names">
                     <div class="name">
                         <label for='name'>Nome</label>
-                        <!-- Se il submit non va a buon fine, il server reindirizza su questa stessa pagina, quindi va ricaricata con 
-                            i valori precedentemente inseriti -->
+                      
                         <input type='text' name='name' <?php if(isset($_POST["name"])){echo "value=".$_POST["name"];} ?> >
                         <div><img src="./assets/close.svg"/><span>Devi inserire il tuo nome</span></div>
                     </div>

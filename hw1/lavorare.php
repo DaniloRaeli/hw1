@@ -1,12 +1,12 @@
 <?php
 require_once 'auth.php';
 
-// Inizializza l'array degli errori
+
 $errors = [];
 
-// Se il modulo è stato inviato
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Validazione dei campi
+
     $name = trim($_POST["name"]);
     $surname = trim($_POST["surname"]);
     $data_n = trim($_POST["data_n"]);
@@ -17,55 +17,50 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $ruolo = trim($_POST["ruolo"]);
     $allow = isset($_POST["allow"]) && $_POST["allow"];
 
-    // Validazione del nome
     if (empty($name)) {
         $errors[] = "Inserisci il tuo nome.";
     }
 
-    // Validazione del cognome
+
     if (empty($surname)) {
         $errors[] = "Inserisci il tuo cognome.";
     }
 
-    // Validazione della data di nascita
+ 
     if (empty($data_n)) {
         $errors[] = "Inserisci la tua data di nascita.";
     }
 
-    // Validazione del domicilio
+   
     if (empty($domicilio)) {
         $errors[] = "Inserisci il tuo domicilio.";
     }
 
-    // Validazione della provincia
+    
     if (empty($provincia)) {
         $errors[] = "Inserisci la tua provincia.";
     }
 
-    // Validazione del telefono
     if (empty($telefono)) {
         $errors[] = "Inserisci il tuo numero di telefono.";
     }
 
-    // Validazione della cittadinanza
     if (empty($cittadinanza)) {
         $errors[] = "Inserisci la tua cittadinanza.";
     }
 
-    // Validazione del ruolo
     if (empty($ruolo)) {
         $errors[] = "Seleziona un ruolo.";
     }
 
-    // Accetta l'informativa per il trattamento dei dati personali
+  
     if (!$allow) {
         $errors[] = "Devi dichiarare di aver preso visione dell'informativa per il trattamento dei dati personali.";
     }
 
-    // Se non ci sono errori, registra l'utente
     if (empty($errors)) {
         if (registerCandidate($name, $surname, $data_n, $domicilio, $provincia, $telefono, $cittadinanza, $ruolo)) {
-            // Reindirizza l'utente dopo la registrazione
+           
             header("Location: index.php");
             exit;
         } else {

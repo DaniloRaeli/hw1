@@ -1,4 +1,4 @@
-   // Aggiungi event listeners ai pulsanti di rimozione
+
    document.querySelectorAll('.remove-button').forEach(button => {
     button.addEventListener('click', function(event) {
         event.preventDefault();
@@ -7,16 +7,16 @@
         const item = form.closest('.cart-item');
         const price = parseFloat(item.dataset.price);
         
-        // Rimuovi l'elemento dal DOM
+    
         item.remove();
         
-        // Aggiorna il totale
+       
         const totalElement = document.getElementById('total-price');
         let total = parseFloat(totalElement.innerText);
         total -= price;
         totalElement.innerText = total.toFixed(2);
 
-        // Invia la richiesta per rimuovere il prodotto dal database
+    
         fetch('carrello.php', {
             method: 'POST',
             headers: {

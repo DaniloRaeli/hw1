@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     form.addEventListener('submit', (event) => {
         let isValid = true;
 
-        // Validazione del nome
+       
         if (name.value.trim() === '') {
             showError(name, "Devi inserire il tuo nome");
             isValid = false;
@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
             clearError(name);
         }
 
-        // Validazione del cognome
+       
         if (surname.value.trim() === '') {
             showError(surname, "Devi inserire il tuo cognome");
             isValid = false;
@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
             clearError(surname);
         }
 
-        // Validazione dell'email
+        
         if (email.value.trim() === '' || !validateEmail(email.value.trim())) {
             showError(email, "Indirizzo email non valido");
             isValid = false;
@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
             clearError(email);
         }
 
-        // Validazione del telefono
+       
         if (telefono.value.trim() === '') {
             showError(telefono, "Devi inserire il tuo numero di telefono");
             isValid = false;
@@ -44,7 +44,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
             clearError(telefono);
         }
 
-        // Validazione della regione
         if (regione.value.trim() === '') {
             showError(regione, "Devi inserire la tua regione");
             isValid = false;
@@ -52,7 +51,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
             clearError(regione);
         }
 
-        // Validazione del settore
+      
         if (settore.value.trim() === '') {
             showError(settore, "Devi inserire il tuo settore");
             isValid = false;
@@ -60,7 +59,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
             clearError(settore);
         }
 
-        // Validazione dell'accettazione dei termini
         if (!allow.checked) {
             showError(allow, "Devi dichiarare di aver preso visione dell'informativa per il trattamento dei dati personali.");
             isValid = false;

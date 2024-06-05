@@ -6,12 +6,11 @@ document.addEventListener('DOMContentLoaded', (event) => {
     form.addEventListener('submit', function(event) {
         let valid = true;
 
-        // Reset error messages
         errors.forEach(error => {
             error.style.display = 'none';
         });
 
-        // Check each input
+
         inputs.forEach(input => {
             if (!input.value.trim()) {
                 const errorDiv = input.parentElement.querySelector('.error');
@@ -22,7 +21,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
             }
         });
 
-        // Check if the allow checkbox is checked
+      
         const allow = document.getElementById('allow');
         if (!allow.checked) {
             const errorDiv = allow.parentElement.querySelector('.error');

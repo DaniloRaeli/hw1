@@ -19,7 +19,7 @@
             $entry = mysqli_fetch_assoc($res);
             if (password_verify($_POST['password'], $entry['password'])) {
 
-                // Imposto una sessione dell'utente
+                
                 $_SESSION["_agora_username"] = $entry['username'];
                 $_SESSION["_agora_user_id"] = $entry['id'];
                 header("Location: index.php");

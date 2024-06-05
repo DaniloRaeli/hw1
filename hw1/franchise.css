@@ -7,8 +7,8 @@ body{
     font-family:Inter;
     letter-spacing: .32px;
     z-index:1;
-    max-height: 100%; /* Imposta l'altezza massima del corpo al 100% dell'altezza della viewport */
-    overflow-y: auto; /* Abilita lo scroll verticale quando il contenuto supera l'altezza massima */
+    max-height: 100%;
+    overflow-y: auto; 
     max-width: 100%;
 }
 
@@ -61,7 +61,7 @@ nav a{
     color:black;
     padding:20px;
     margin-left: 5px;
-    text-decoration: none; /* Rimuove il sottolineato predefinito */
+    text-decoration: none; 
     width: 10%;
     
 }
@@ -72,13 +72,13 @@ nav a{
 }
 
 #auth-links a {
-    margin-left: 10px; /* Imposta la distanza desiderata tra i link */
-    color: #FF0000; /* Colore del testo, ad esempio rosso */
+    margin-left: 10px; 
+    color: #FF0000; 
     text-decoration: none;
 }
 
 #auth-links a:first-child {
-    margin-left: 0; /* Rimuove il margine sinistro dal primo link (Login) */
+    margin-left: 0; 
 }
 
  #login{

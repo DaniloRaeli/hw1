@@ -1,12 +1,11 @@
 <?php
 require_once 'auth.php';
 
-// Inizializza l'array degli errori
 $errors = [];
 
-// Se il modulo è stato inviato
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Validazione dei campi
+    
     $name = trim($_POST["name"]);
     $surname = trim($_POST["surname"]);
     $email = trim($_POST["email"]);
@@ -15,47 +14,45 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $settore = trim($_POST["settore"]);
     $allow = isset($_POST["allow"]) && $_POST["allow"];
 
-    // Validazione del nome
+ 
     if (empty($name)) {
         $errors[] = "Inserisci il tuo nome.";
     }
 
-    // Validazione del cognome
+  
     if (empty($surname)) {
         $errors[] = "Inserisci il tuo cognome.";
     }
 
-    // Validazione dell'email
+    
     if (empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $errors[] = "Inserisci un'email valida.";
     } elseif (checkEmailExists($email)) {
         $errors[] = "L'email è già utilizzata.";
     }
 
-    // Validazione del telefono
+   
     if (empty($telefono)) {
         $errors[] = "Inserisci il tuo numero di telefono.";
     }
 
-    // Validazione della regione
     if (empty($regione)) {
         $errors[] = "Inserisci la tua regione.";
     }
 
-    // Validazione del settore
     if (empty($settore)) {
         $errors[] = "Inserisci il tuo settore.";
     }
 
-    // Accetta l'informativa per il trattamento dei dati personali
+    
     if (!$allow) {
         $errors[] = "Devi dichiarare di aver preso visione dell'informativa per il trattamento dei dati personali.";
     }
 
-    // Se non ci sono errori, registra l'utente
+    
     if (empty($errors)) {
         if (registerFranchise($name, $surname, $email, $telefono, $regione, $settore)) {
-            // Reindirizza l'utente dopo la registrazione
+            
             header("Location: index.php");
             exit;
         } else {
@@ -182,8 +179,7 @@ Scopri di più su KFC nell’area stampa .</p>
                 <div class="names">
                     <div class="name">
                         <label for='name'>Nome</label>
-                        <!-- Se il submit non va a buon fine, il server reindirizza su questa stessa pagina, quindi va ricaricata con 
-                            i valori precedentemente inseriti -->
+                       
                         <input type='text' name='name' <?php if(isset($_POST["name"])){echo "value=".$_POST["name"];} ?> >
                         <div><img src="./assets/close.svg"/><span>Devi inserire il tuo nome</span></div>
                     </div>
