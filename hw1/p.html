@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Box</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .menu {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .menu-item {
+            padding: 10px 20px;
+            cursor: pointer;
+            text-align: center;
+            color: black;
+        }
+
+        .menu-item.active {
+            color: red;
+        }
+
+        .separator {
+            width: 1px;
+            height: 20px;
+            background-color: gray;
+            margin: 0 10px;
+        }
+
+        #content-box-2 {
+            text-align: center;
+        }
+
+        #content-box-2 img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="menu">
+        <div class="menu-item" data-content="1">Scritta 1</div>
+        <div class="separator"></div>
+        <div class="menu-item" data-content="2">Scritta 2</div>
+        <div class="separator"></div>
+        <div class="menu-item" data-content="3">Scritta 3</div>
+    </div>
+    <div id="content-box-2">
+        <img id="content-image" src="image1.jpg" alt="Immagine 1">
+        <p id="content-text">Testo per Scritta 1</p>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            console.log("Documento caricato correttamente");
+
+            const menuItems = document.querySelectorAll('.menu-item');
+            const contentImage = document.getElementById('content-image');
+            const contentText = document.getElementById('content-text');
+
+            console.log(menuItems); // Controlla se i menu item sono selezionati
+            console.log(contentImage); // Controlla se l'immagine è selezionata
+            console.log(contentText); // Controlla se il testo è selezionato
+
+            const contents = {
+                1: {
+                    image: 'image1.jpg',
+                    text: 'Testo '
+                },
+                2: {
+                    image: 'image2.jpg',
+                    text: 'Testo per Scritta 2'
+                },
+                3: {
+                    image: 'image3.jpg',
+                    text: 'Testo per Scritta 3'
+                }
+            };
+
+            menuItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    console.log("Menu item clicked");
+
+                    // Rimuovi la classe 'active' da tutti i menu item
+                    menuItems.forEach(i => i.classList.remove('active'));
+                    // Aggiungi la classe 'active' all'elemento cliccato
+                    item.classList.add('active');
+
+                    // Ottieni il contenuto corrispondente
+                    const contentId = item.getAttribute('data-content');
+                    const content = contents[contentId];
+
+                    console.log("Updating content:", content);
+
+                    // Cambia l'immagine e il testo nel content box
+                    contentImage.src = content.image;
+                    contentImage.alt = `Immagine ${contentId}`;
+                    contentText.textContent = content.text;
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
+/**
+<?php
+session_start();
+include 'auth.php';
+
+if (checkAuth()) {
+    header('Location: index.php');
+    exit;
+}
+
+if (!empty($_POST["username"]) && !empty($_POST["password"])) {
+    $conn = mysqli_connect($dbconfig['host'], $dbconfig['user'], $dbconfig['password'], $dbconfig['name']);
+    if (!$conn) {
+        die("Connection failed: " . mysqli_connect_error());
+    }
+
+    $username = mysqli_real_escape_string($conn, $_POST['username']);
+    $password = mysqli_real_escape_string($conn, $_POST['password']);
+    $query = "SELECT * FROM Utente WHERE username = '$username'";
+
+    $res = mysqli_query($conn, $query);
+    if (!$res) {
+        die("Query failed: " . mysqli_error($conn));
+    }
+
+    if (mysqli_num_rows($res) > 0) {
+        $entry = mysqli_fetch_assoc($res);
+        if (password_verify($password, $entry['password'])) {
+            // Imposto una sessione dell'utente
+            session_regenerate_id(true);  // Rigenera l'ID della sessione
+            $_SESSION["_agora_username"] = $entry['username'];
+            $_SESSION["_agora_user_id"] = $entry['id'];
+            header("Location: index.php");
+            mysqli_free_result($res);
+            mysqli_close($conn);
+            exit;
+        } else {
+            $error = "Username e/o password errati.";
+        }
+    } else {
+        $error = "Username e/o password errati.";
+    }
+
+    mysqli_free_result($res);
+    mysqli_close($conn);
+} else if (isset($_POST["username"]) || isset($_POST["password"])) {
+    $error = "Inserisci username e password.";
+}
+?>
+
+
+/*
+
+<?php
+    require_once 'auth.php';
+
+    if (checkAuth()) {
+        header("Location: home.php");
+        exit;
+    }   
+
+    if (!empty($_POST["username"]) && !empty($_POST["password"]) && !empty($_POST["email"]) && !empty($_POST["name"]) && 
+        !empty($_POST["surname"]) && !empty($_POST["confirm_password"]) && !empty($_POST["allow"]))
+    {
+        $error = array();
+        $conn = mysqli_connect($dbconfig['host'], $dbconfig['user'], $dbconfig['password'], $dbconfig['name']) or die(mysqli_error($conn));
+
+        if(!preg_match('/^[a-zA-Z0-9_]{1,15}$/', $_POST['username'])) {
+            $error[] = "Username non valido";
+        } else {
+            $username = mysqli_real_escape_string($conn, $_POST['username']);
+            $query = "SELECT username FROM users WHERE username = '$username'";
+            $res = mysqli_query($conn, $query);
+            if (mysqli_num_rows($res) > 0) {
+                $error[] = "Username già utilizzato";
+            }
+        }
+
+        if (strlen($_POST["password"]) < 8) {
+            $error[] = "Caratteri password insufficienti";
+        } 
+
+        if (strcmp($_POST["password"], $_POST["confirm_password"]) != 0) {
+            $error[] = "Le password non coincidono";
+        }
+
+        if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
+            $error[] = "Email non valida";
+        } else {
+            $email = mysqli_real_escape_string($conn, strtolower($_POST['email']));
+            $res = mysqli_query($conn, "SELECT email FROM users WHERE email = '$email'");
+            if (mysqli_num_rows($res) > 0) {
+                $error[] = "Email già utilizzata";
+            }
+        }
+
+
+
+        if (count($error) == 0) {
+            $name = mysqli_real_escape_string($conn, $_POST['name']);
+            $surname = mysqli_real_escape_string($conn, $_POST['surname']);
+
+            $password = mysqli_real_escape_string($conn, $_POST['password']);
+            $password = password_hash($password, PASSWORD_BCRYPT);
+
+            $query = "INSERT INTO users(username, password, name, surname, email) VALUES('$username', '$password', '$name', '$surname', '$email')";
+            
+            if (mysqli_query($conn, $query)) {
+                $_SESSION["_agora_username"] = $_POST["username"];
+                $_SESSION["_agora_user_id"] = mysqli_insert_id($conn);
+                mysqli_close($conn);
+                header("Location: home.php");
+                exit;
+            } else {
+                $error[] = "Errore di connessione al Database";
+            }
+        }
+
+        mysqli_close($conn);
+    }
+    else if (isset($_POST["username"])) {
+        $error = array("Riempi tutti i campi");
+    }
+
+?>
+*/

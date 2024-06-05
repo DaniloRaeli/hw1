@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100">
+  <g id="icon-ottimismo" transform="translate(-165 -2167)">
+    <g id="Raggruppa_7993" data-name="Raggruppa 7993">
+      <rect id="Rettangolo_3033" data-name="Rettangolo 3033" width="100" height="100" transform="translate(165 2167)" fill="none"/>
+      <g id="Raggruppa_8097" data-name="Raggruppa 8097" transform="translate(171 2181)" style="mix-blend-mode: normal;isolation: isolate">
+        <g id="Raggruppa_8099" data-name="Raggruppa 8099">
+          <path id="Tracciato_4124" data-name="Tracciato 4124" d="M24.508,27.818c0,4.462,4.308,8.092,9.6,8.092s9.6-3.63,9.6-8.092h-4c0,2.218-2.566,4.092-5.6,4.092s-5.6-1.874-5.6-4.092Z" fill="#e4002b"/>
+          <path id="Tracciato_4125" data-name="Tracciato 4125" d="M29.469,17.389a3.7,3.7,0,1,0-3.7,3.7,3.7,3.7,0,0,0,3.7-3.7" fill="#e4002b"/>
+          <path id="Tracciato_4126" data-name="Tracciato 4126" d="M42.457,21.092a3.7,3.7,0,1,0-3.7-3.7,3.7,3.7,0,0,0,3.7,3.7" fill="#e4002b"/>
+          <path id="Tracciato_4127" data-name="Tracciato 4127" d="M68.223,16.161V0H0V48.146H17V67.523l14.517-10.37H44.629l23.594,15.73V57.153H88.055V16.161ZM21,59.75v-15.6H4V4H64.223V44.146H42.845l-.522.373L24.485,57.153h.149Z" fill="#e4002b"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>
